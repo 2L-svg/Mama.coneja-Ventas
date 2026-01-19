@@ -21,7 +21,7 @@ plt.grid(True)
 plt.tight_layout()
 plt.show()
 
-# Top 10 productos (barras)
+#productos barras
 top10 = df.groupby('producto')['cantidad'].sum().sort_values(ascending=False).head(10)
 plt.figure(figsize=(10,6))
 top10.plot(kind='bar')
@@ -32,7 +32,7 @@ plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()
 
-# Ventas por categoria (pastel)
+#Ventas por categoria
 ventas_cat = df.groupby('categoria')['total'].sum()
 plt.figure(figsize=(6,6))
 ventas_cat.plot(kind='pie', autopct='%1.1f%%')
