@@ -5,7 +5,7 @@ import random
 conn = sqlite3.connect('mama_coneja.db')
 c = conn.cursor()
 
-# CREAR TABLAS
+#Inicializar tablas
 c.executescript("""
 DROP TABLE IF EXISTS categorias;
 DROP TABLE IF EXISTS productos;
@@ -43,13 +43,13 @@ CREATE TABLE ventas (
 );
 """)
 
-# INSERTAR CATEGORÍAS
+#Se insertan las categorias
 categorias = ['lacteos', 'despensa', 'bebidas', 'limpieza', 'panaderia']
 
 for i, cat in enumerate(categorias, start=1):
     c.execute("INSERT INTO categorias (id, nombre) VALUES (?, ?)", (i, cat))
 
-# INSERTAR PRODUCTOS
+#Apartado para productos
 productos = [
     ('Leche entera', 1, 22),
     ('Arroz 1kg', 2, 30),
@@ -60,14 +60,14 @@ for i, p in enumerate(productos, start=1):
     c.execute("INSERT INTO productos (id, nombre, categoria_id, precio) VALUES (?,?,?,?)",
               (i, p[0], p[1], p[2]))
 
-# INSERTAR CLIENTES
+#Tienda de clientes
 ciudades = ['Mazatlán', 'Oaxaca', 'México']
 
 for i in range(1, 21):
     c.execute("INSERT INTO clientes (id, nombre, ciudad) VALUES (?, ?, ?)",
               (i, f'cliente_{i}', random.choice(ciudades)))
 
-# GENERAR VENTAS
+#Generacion de ventas
 start = datetime(2025, 1, 1)
 
 for i in range(1, 1001):
